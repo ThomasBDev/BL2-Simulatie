@@ -13,6 +13,7 @@ namespace BL2_Simulatie
         Texture2D zonSprite;
         Vector2 oorsprong, zonPositie, zonOrigin;
 
+        
         float zonScale = 0.1f;
         float zonRotation = 0f;
 
@@ -52,7 +53,7 @@ namespace BL2_Simulatie
             zonPositie = new Vector2((screenWidth / 2) - (zonWidth / 2), (screenHeight / 2) - (zonHeight / 2));
 
             //zonOrigin = new Vector2(zonSprite.Width / 2, zonSprite.Height / 2);
-            //zonOrigin = new Vector2(zonWidth / 2, zonHeight / 2);
+            zonOrigin = new Vector2(zonWidth / 2, zonHeight / 2);
         }
 
         protected override void UnloadContent()
@@ -95,7 +96,7 @@ namespace BL2_Simulatie
             //zonPositie.X += 1;
 
             //Roteert om de linkerbovenhoek van een png.
-            //zonRotation += 0.01f;
+            zonRotation += 0.1f;
         }
     }
 }
