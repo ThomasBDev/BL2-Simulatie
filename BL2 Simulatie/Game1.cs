@@ -29,12 +29,12 @@ namespace BL2_Simulatie
         {
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeight = graphics.PreferredBackBufferHeight;
-            Console.WriteLine("Backbuffer:");
-            Console.WriteLine("Width = " + screenWidth);
-            Console.WriteLine("Height = " + screenHeight);
+
+            Print("BackbufferWidth, BackbufferHeight = " + screenWidth + "," + screenHeight);
 
             oorsprong = Vector2.Zero;
             zonOrigin = Vector2.Zero;
+            zonPositie = Vector2.Zero;
 
             base.Initialize();
         }
@@ -46,14 +46,17 @@ namespace BL2_Simulatie
             zonSprite = Content.Load<Texture2D>("sprites/spr_sun");
             zonWidth = zonSprite.Width * zonScale;
             zonHeight = zonSprite.Height * zonScale;
-            Console.WriteLine("zonWidth = " + zonWidth);
-            Console.WriteLine("zonHeight = " + zonHeight);
 
-            //zonPositie = new Vector2((screenWidth / 2) - (zonSprite.Width / 2), (screenHeight / 2) - (zonSprite.Height / 2));
-            zonPositie = new Vector2((screenWidth / 2) - (zonWidth / 2), (screenHeight / 2) - (zonHeight / 2));
+            Print("zonWidth, zonHeight = " + zonWidth + ", " + zonHeight);
 
-            //zonOrigin = new Vector2(zonSprite.Width / 2, zonSprite.Height / 2);
-            zonOrigin = new Vector2(zonWidth / 2, zonHeight / 2);
+            //zonPositie is de plek op het scherm.
+            zonPositie = new Vector2(screenWidth / 2, screenHeight / 2);
+            Print("zonPositie = " + zonPositie);
+
+            //zonOrigin is een draaipunt op de ORIGINELE sprite.
+            //Daarom moet je hier zonSprite.Width / 2 gebruiken en niet zonWidth / 2.
+            zonOrigin = new Vector2(zonSprite.Width / 2, zonSprite.Height / 2);
+            Print("zonOrigin = " + zonOrigin);
         }
 
         protected override void UnloadContent()
@@ -91,12 +94,20 @@ namespace BL2_Simulatie
             base.Draw(gameTime);
         }
 
+        public void Print(string output = "")
+        {
+            Console.WriteLine();
+            Console.WriteLine(output);
+            Console.WriteLine();
+        }
+
         public void MoveSun()
         {
             //zonPositie.X += 1;
+            //zonPositie.Y += 2;
 
             //Roteert om de linkerbovenhoek van een png.
-            zonRotation += 0.1f;
+            zonRotation += 0.2f;
         }
     }
 }
