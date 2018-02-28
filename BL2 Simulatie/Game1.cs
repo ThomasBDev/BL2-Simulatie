@@ -10,14 +10,10 @@ namespace BL2_Simulatie
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D zonSprite;
-        Vector2 oorsprong, zonPositie, zonOrigin;
+        Vector2 oorsprong;
+        Ster zon, groeneSter, rodeSter;
 
-        
-        float zonScale = 0.1f;
-        float zonRotation = 0f;
-
-        float screenWidth, screenHeight, zonWidth, zonHeight;
+        float screenWidth, screenHeight;
 
         public Game1()
         {
@@ -27,14 +23,11 @@ namespace BL2_Simulatie
 
         protected override void Initialize()
         {
+            oorsprong = Vector2.Zero;
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeight = graphics.PreferredBackBufferHeight;
 
-            Print("BackbufferWidth, BackbufferHeight = " + screenWidth + "," + screenHeight);
-
-            oorsprong = Vector2.Zero;
-            zonOrigin = Vector2.Zero;
-            zonPositie = Vector2.Zero;
+            Print("BackbufferWidth, BackbufferHeight = " + screenWidth + "," + screenHeight);                  
 
             base.Initialize();
         }
@@ -43,20 +36,19 @@ namespace BL2_Simulatie
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            zonSprite = Content.Load<Texture2D>("sprites/spr_sun");
-            zonWidth = zonSprite.Width * zonScale;
-            zonHeight = zonSprite.Height * zonScale;
+            //scale, rotation, sprite.
+            zon = new Ster(0.1f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
+            //Door position later aan te maken, is het mogelijk om variabeles van Ster te gebruiken in de position berekening.
+            zon.position = new Vector2(screenWidth / 2, screenHeight / 2);
 
-            Print("zonWidth, zonHeight = " + zonWidth + ", " + zonHeight);
+            Print("zon.position = " + zon.position);
+            Print("zon.rotationPoint = " + zon.rotationPoint);
 
-            //zonPositie is de plek op het scherm.
-            zonPositie = new Vector2(screenWidth / 2, screenHeight / 2);
-            Print("zonPositie = " + zonPositie);
+            groeneSter = new Ster(0.05f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
+            groeneSter.position = new Vector2(screenWidth - groeneSter.scaledWidth / 2, groeneSter.scaledHeight / 2);
 
-            //zonOrigin is een draaipunt op de ORIGINELE sprite.
-            //Daarom moet je hier zonSprite.Width / 2 gebruiken en niet zonWidth / 2.
-            zonOrigin = new Vector2(zonSprite.Width / 2, zonSprite.Height / 2);
-            Print("zonOrigin = " + zonOrigin);
+            rodeSter = new Ster(0.05f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
+            rodeSter.position = new Vector2(rodeSter.scaledWidth / 2, rodeSter.scaledHeight / 2);
         }
 
         protected override void UnloadContent()
@@ -74,7 +66,7 @@ namespace BL2_Simulatie
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            MoveSun();
+            MoveStars();
 
             base.Update(gameTime);
         }
@@ -88,10 +80,18 @@ namespace BL2_Simulatie
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(zonSprite, zonPositie, null, Color.White, zonRotation, zonOrigin, zonScale, SpriteEffects.None, 0f);
+            DrawSprite(zon, Color.White);
+            DrawSprite(groeneSter, Color.Aqua);
+            DrawSprite(rodeSter, Color.HotPink);
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        //Een methode om spriteBatch.Draw iets compacter te maken.
+        public void DrawSprite(Ster gameObject, Color color)
+        {
+            spriteBatch.Draw(gameObject.sprite, gameObject.position, null, color, gameObject.rotationSpeed, gameObject.rotationPoint, gameObject.scale, SpriteEffects.None, 0f);
         }
 
         public void Print(string output = "")
@@ -101,13 +101,17 @@ namespace BL2_Simulatie
             Console.WriteLine();
         }
 
-        public void MoveSun()
+        public void MoveStars()
         {
-            //zonPositie.X += 1;
-            //zonPositie.Y += 2;
+            zon.rotationSpeed += 0.2f;
 
-            //Roteert om de linkerbovenhoek van een png.
-            zonRotation += 0.2f;
+            groeneSter.rotationSpeed -= 0.1f;
+            groeneSter.position.X -= 0.4f;
+            groeneSter.position.Y += 0.2f;
+
+            rodeSter.rotationSpeed += 0.5f;
+            rodeSter.position.X += 0.2f;
+            rodeSter.position.Y += 0.4f;
         }
     }
 }
