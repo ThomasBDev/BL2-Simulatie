@@ -50,3 +50,29 @@ C:\Users\Thomas\Documents\BL2-Simulatie\BL2 Simulatie\bin\Windows\x86\Debug\Shar
 C:\Users\Thomas\Documents\BL2-Simulatie\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Thomas\Documents\BL2-Simulatie\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Thomas\Documents\BL2-Simulatie\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.csprojResolveAssemblyReference.cache
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\Content\sprites\spr_sun.png
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\BL2 Simulatie.exe
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\BL2 Simulatie.pdb
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.csprojResolveAssemblyReference.cache
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.exe
+C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.pdb

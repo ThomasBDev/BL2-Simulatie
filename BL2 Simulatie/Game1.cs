@@ -26,6 +26,7 @@ namespace BL2_Simulatie
             oorsprong = Vector2.Zero;
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeight = graphics.PreferredBackBufferHeight;
+            this.IsMouseVisible = true;
 
             Print("BackbufferWidth, BackbufferHeight = " + screenWidth + "," + screenHeight);                  
 
