@@ -11,12 +11,13 @@ namespace BL2_Simulatie
     public class Ster
     {
         public float scale, rotationSpeed, scaledWidth, scaledHeight;
+        public double direction;
         //zon.position is de plek op het scherm.
         //zon.rotationPoint is een draaipunt op de ORIGINELE sprite.
         public Vector2 position, rotationPoint;
         public Texture2D sprite;
 
-        public Ster(float scale, float rotation, Texture2D sprite)
+        public Ster(float scale, float rotation, Texture2D sprite, double direction = 0)
         {
             this.scale = scale;
             rotationSpeed = rotation;
@@ -24,6 +25,7 @@ namespace BL2_Simulatie
             scaledWidth = sprite.Width * scale;
             scaledHeight = sprite.Height * scale;            
             rotationPoint = new Vector2(sprite.Width / 2, sprite.Height / 2);
+            this.direction = direction;
         }
     }
 }

@@ -11,7 +11,10 @@ namespace BL2_Simulatie
         SpriteBatch spriteBatch;
 
         Vector2 oorsprong;
-        Ster zon, groeneSter, rodeSter;
+        Ster zon, groeneSter, rodeSter, aarde, aarde2;
+        Kracht MPZ;
+
+        Formules form = new Formules();
 
         float screenWidth, screenHeight;
 
@@ -50,6 +53,14 @@ namespace BL2_Simulatie
 
             rodeSter = new Ster(0.05f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
             rodeSter.position = new Vector2(rodeSter.scaledWidth / 2, rodeSter.scaledHeight / 2);
+
+            aarde = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"));
+            aarde.position = new Vector2(screenWidth * 0.75f, screenHeight / 2);
+
+            aarde2 = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"));
+            aarde2.position = new Vector2(screenWidth * 0.25f, screenHeight / 2);
+
+            MPZ = new Kracht(Math.PI * 0.75, 1);
         }
 
         protected override void UnloadContent()
@@ -84,6 +95,8 @@ namespace BL2_Simulatie
             DrawSprite(zon, Color.White);
             DrawSprite(groeneSter, Color.Aqua);
             DrawSprite(rodeSter, Color.HotPink);
+            DrawSprite(aarde, Color.White);
+            DrawSprite(aarde2, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -104,7 +117,7 @@ namespace BL2_Simulatie
 
         public void MoveStars()
         {
-            zon.rotationSpeed += 0.2f;
+            zon.rotationSpeed += (float)Math.PI / 20;
 
             groeneSter.rotationSpeed -= 0.1f;
             groeneSter.position.X -= 0.4f;
@@ -113,6 +126,30 @@ namespace BL2_Simulatie
             rodeSter.rotationSpeed += 0.5f;
             rodeSter.position.X += 0.2f;
             rodeSter.position.Y += 0.4f;
+
+            //double oudeDir = aarde.direction;            
+            //aarde.rotationSpeed += (float)form.NieuweRichting(aarde.direction, MPZ.power);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                //aarde.rotationSpeed += (float)aarde.direction / 100;
+
+                //aarde.direction += (float)form.NieuweRichting(aarde.direction, MPZ.power);
+                //Print("direction = " + aarde.direction + " ==> " + (aarde.direction / Math.PI) + " PI.");
+
+                double Faarde = 10;
+                double Fmpz = 10;
+                Print("Nieuwe aarde.direction = " + (aarde.direction - (form.NieuweRichting(Faarde, Fmpz))));
+                aarde.direction -= (form.NieuweRichting(Faarde, Fmpz));
+                aarde.rotationSpeed = (float)aarde.direction / 100;
+
+                double FMPZ = 10000;
+                aarde2.direction += (form.NieuweRichting(Faarde, FMPZ));
+                aarde2.rotationSpeed = (float)aarde2.direction / 100;
+            }
+
+            //aarde.position.X += (float)mpz;
+            //aarde.position.Y += (float)oudeDir;
         }
     }
 }

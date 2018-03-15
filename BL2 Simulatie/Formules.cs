@@ -71,5 +71,14 @@ namespace BL2_Simulatie
 
             return Math.Sqrt(kwadraatA - (kwadraatA * kwadraatE));
         }
+
+
+
+        //Goniometrie-------------------------------------------------------------
+        public double NieuweRichting(double planetDir, double mpzDir)
+        {
+            double hoek = Math.Atan(mpzDir / planetDir);
+            return hoek;
+        }
     }
 }
