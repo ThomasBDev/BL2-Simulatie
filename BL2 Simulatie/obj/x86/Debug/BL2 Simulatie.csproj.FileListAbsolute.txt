@@ -76,3 +76,4 @@ C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\bin\Windows\x86\Deb
 C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.csprojResolveAssemblyReference.cache
 C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.exe
 C:\Users\Lex\Documents\OnderzoeksmethodenSPACE\BL2 Simulatie\obj\x86\Debug\BL2 Simulatie.pdb
+C:\Users\Thomas\Documents\BL2-Simulatie\BL2 Simulatie\bin\Windows\x86\Debug\Content\sprites\spr_earth.jpg

@@ -93,8 +93,8 @@ namespace BL2_Simulatie
 
             spriteBatch.Begin();
             DrawSprite(zon, Color.White);
-            DrawSprite(groeneSter, Color.Aqua);
-            DrawSprite(rodeSter, Color.HotPink);
+            //DrawSprite(groeneSter, Color.Aqua);
+            //DrawSprite(rodeSter, Color.HotPink);
             DrawSprite(aarde, Color.White);
             DrawSprite(aarde2, Color.White);
             spriteBatch.End();
@@ -143,9 +143,15 @@ namespace BL2_Simulatie
                 aarde.direction -= (form.NieuweRichting(Faarde, Fmpz));
                 aarde.rotationSpeed = (float)aarde.direction / 100;
 
-                double FMPZ = 10000;
+                double FMPZ = 30;
+                double Fv = 1;
+
+                double hoeksnelheid = 10;
                 aarde2.direction += (form.NieuweRichting(Faarde, FMPZ));
                 aarde2.rotationSpeed = (float)aarde2.direction / 100;
+                aarde2.position.X += (float)(Math.Tan(aarde2.direction) * Fv);
+                Print("Aarde2 X positie = " + aarde2.position.X);
+                aarde2.position.Y -= (float)(Fv);
             }
 
             //aarde.position.X += (float)mpz;
