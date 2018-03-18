@@ -19,6 +19,11 @@ namespace BL2_Simulatie
             return 0.5 * a * Math.Pow(t, 2);
         }
 
+        public double FmaVerplaatsing(double F, double m, double t)
+        {
+            return 0.5 * (F / m) * Math.Pow(t, 2);
+        }
+
 
 
         //Krachten-----------------------------------------------------------------------------
@@ -42,6 +47,18 @@ namespace BL2_Simulatie
         public double Fmpz(double m, double v, double r)
         {
             return (m * Math.Pow(v, 2)) / r;
+        }
+
+        //De kracht in de X-richting van Fv.
+        public double Fx(double Fs, double newDir)
+        {
+            return Fs * Math.Sin(newDir);
+        }
+
+        //De kracht in de Y-richting van Fv.
+        public double Fy(double Fs, double newDir)
+        {
+            return Fs * Math.Cos(newDir);
         }
 
 

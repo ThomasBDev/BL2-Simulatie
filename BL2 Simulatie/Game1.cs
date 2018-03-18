@@ -143,15 +143,28 @@ namespace BL2_Simulatie
                 aarde.direction -= (form.NieuweRichting(Faarde, Fmpz));
                 aarde.rotationSpeed = (float)aarde.direction / 100;
 
-                double FMPZ = 30;
-                double Fv = 1;
 
-                double hoeksnelheid = 10;
-                aarde2.direction += (form.NieuweRichting(Faarde, FMPZ));
+
+                //double FMPZ = 30;
+                //double Fv = 1;
+                //double hoeksnelheid = 10;
+                double Fv = 2000;
+                double FMPZ = 3000;
+                double Fs = Math.Sqrt( Math.Pow(Fv, 2) + Math.Pow(FMPZ, 2) );
+
+                aarde2.direction += (form.NieuweRichting(Fv, FMPZ));
                 aarde2.rotationSpeed = (float)aarde2.direction / 100;
-                aarde2.position.X += (float)(Math.Tan(aarde2.direction) * Fv);
-                Print("Aarde2 X positie = " + aarde2.position.X);
-                aarde2.position.Y -= (float)(Fv);
+
+                //aarde2.position.X += (float)(Math.Tan(aarde2.direction) * Fv);
+                //aarde2.position.Y -= (float)(Fv);
+
+                double Fx = form.Fx(Fs, aarde2.direction);
+                double Fy = form.Fy(Fs, aarde2.direction);
+                double massaAarde2 = 10;
+                double tijdstap = 1;
+                aarde2.position.X += (float)form.FmaVerplaatsing(Fx, massaAarde2, tijdstap);
+                aarde2.position.Y += (float)form.FmaVerplaatsing(Fy, massaAarde2, tijdstap);
+                Print("Aarde2 positie = " + aarde2.position);
             }
 
             //aarde.position.X += (float)mpz;
