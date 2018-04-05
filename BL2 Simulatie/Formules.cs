@@ -37,6 +37,11 @@ namespace BL2_Simulatie
             return m * g;
         }
 
+        public double Fv(double m, double v, double t)
+        {
+            return (m * v) / t;
+        }
+
         public double Fgrav(double m1, double m2, double r)
         {
             double G = 0.00000000006674;
@@ -96,6 +101,14 @@ namespace BL2_Simulatie
         {
             double hoek = Math.Atan(mpzDir / planetDir);
             return hoek;
+        }
+
+        public double AfstandTussenHemellichamen(Vector2 A, Vector2 B)
+        {
+            double AKwadraat = Math.Pow( (A.X - B.X), 2 );
+            double BKwadraat = Math.Pow( (A.Y - B.Y), 2 );
+            double resultaat = Math.Sqrt(AKwadraat + BKwadraat);
+            return resultaat;
         }
     }
 }

@@ -12,12 +12,13 @@ namespace BL2_Simulatie
         SpriteBatch spriteBatch;
 
         Vector2 oorsprong;
-        Ster zon, groeneSter, rodeSter, aarde, aarde2;
+        Ster zon, aarde, aarde2;
         Kracht MPZ;
 
         Formules form = new Formules();
 
         float screenWidth, screenHeight;
+        double tijdstap = 1;
 
         public Game1()
         {
@@ -46,9 +47,9 @@ namespace BL2_Simulatie
             this.Window.Position = new Point(windowPositionX, windowPositionY);
             this.IsMouseVisible = true;
 
-            Print("fullscreenWidth, fullscreenHeight = " + fullscreenWidth + ", " + fullscreenHeight);
-            Print("screenWidth, screenHeight = " + screenWidth + ", " + screenHeight);
-            Print("windowPositionX, windowPositionY = " + windowPositionX + ", " + windowPositionY);
+            //Print("fullscreenWidth, fullscreenHeight = " + fullscreenWidth + ", " + fullscreenHeight);
+            //Print("screenWidth, screenHeight = " + screenWidth + ", " + screenHeight);
+            //Print("windowPositionX, windowPositionY = " + windowPositionX + ", " + windowPositionY);
 
             base.Initialize();
         }
@@ -58,24 +59,16 @@ namespace BL2_Simulatie
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //scale, rotation, sprite.
-            zon = new Ster(0.1f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
+            zon = new Ster(0.1f, 0f, Content.Load<Texture2D>("sprites/spr_sun"), 1000, 10, Math.PI);
             //Door position later aan te maken, is het mogelijk om variabeles van Ster te gebruiken in de position berekening.
-            zon.position = new Vector2(screenWidth / 2, screenHeight / 2);
+            //zon.position = new Vector2(screenWidth / 2, screenHeight / 2);
+            zon.position = new Vector2(-10, 0);
 
-            //Print("zon.position = " + zon.position);
-            //Print("zon.rotationPoint = " + zon.rotationPoint);
+            aarde = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"), 10, 10, 0);
+            aarde.position = new Vector2(0, 0);
 
-            groeneSter = new Ster(0.05f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
-            groeneSter.position = new Vector2(screenWidth - groeneSter.scaledWidth / 2, groeneSter.scaledHeight / 2);
-
-            rodeSter = new Ster(0.05f, 0f, Content.Load<Texture2D>("sprites/spr_sun"));
-            rodeSter.position = new Vector2(rodeSter.scaledWidth / 2, rodeSter.scaledHeight / 2);
-
-            aarde = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"));
-            aarde.position = new Vector2(screenWidth * 0.75f, screenHeight / 2);
-
-            aarde2 = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"));
-            aarde2.position = new Vector2(screenWidth * 0.25f, screenHeight / 2);
+            //aarde2 = new Ster(0.5f, 0f, Content.Load<Texture2D>("sprites/spr_earth"), 10, 1000);
+            //aarde2.position = new Vector2(screenWidth * 0.25f, screenHeight / 2);
 
             MPZ = new Kracht(Math.PI * 0.75, 1);
         }
@@ -110,10 +103,8 @@ namespace BL2_Simulatie
 
             spriteBatch.Begin();
             DrawSprite(zon, Color.White);
-            //DrawSprite(groeneSter, Color.Aqua);
-            //DrawSprite(rodeSter, Color.HotPink);
             DrawSprite(aarde, Color.White);
-            DrawSprite(aarde2, Color.White);
+            //DrawSprite(aarde2, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -127,25 +118,12 @@ namespace BL2_Simulatie
 
         public void Print(string output = "")
         {
-            //Console.WriteLine();
             Console.WriteLine(output);
-            //Console.WriteLine();
         }
 
         public void MoveStars()
         {
-            zon.rotationSpeed += (float)Math.PI / 20;
-
-            groeneSter.rotationSpeed -= 0.1f;
-            groeneSter.position.X -= 0.4f;
-            groeneSter.position.Y += 0.2f;
-
-            rodeSter.rotationSpeed += 0.5f;
-            rodeSter.position.X += 0.2f;
-            rodeSter.position.Y += 0.4f;
-
-            //double oudeDir = aarde.direction;            
-            //aarde.rotationSpeed += (float)form.NieuweRichting(aarde.direction, MPZ.power);
+            //zon.rotationSpeed += (float)Math.PI / 20;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
@@ -154,46 +132,32 @@ namespace BL2_Simulatie
                 //aarde.direction += (float)form.NieuweRichting(aarde.direction, MPZ.power);
                 //Print("direction = " + aarde.direction + " ==> " + (aarde.direction / Math.PI) + " PI.");
 
-                double Faarde = 10;
-                double Fmpz = 10;
-                //Print("Nieuwe aarde.direction = " + (aarde.direction - (form.NieuweRichting(Faarde, Fmpz))));
-                aarde.direction -= (form.NieuweRichting(Faarde, Fmpz));
-                aarde.rotationSpeed = (float)aarde.direction / 100;
+                double d = form.AfstandTussenHemellichamen(aarde.position, zon.position);
+                double Fvel = form.Fv(aarde.mass, aarde.velocity, tijdstap);
+                double Fmiddel = form.Fmpz(aarde.mass, aarde.velocity, d);
 
+                Print("d = " + d);
+                Print("Fvel = " + Fvel);
+                Print("Fmpz = " + Fmiddel);
 
+                Print("Oude aarde.direction = " + aarde.direction);
+                aarde.direction -= (form.NieuweRichting(Fvel, Fmiddel));
+                Print("Nieuwe aarde.direction = " + aarde.direction);
+                //aarde.rotationSpeed = (float)aarde.direction / 100;
 
-                //double FMPZ = 30;
-                //double Fv = 1;
-                //double hoeksnelheid = 10;
-                double Fv = 2000;
-                double FMPZ = 3000;
-                double Fs = Math.Sqrt( Math.Pow(Fv, 2) + Math.Pow(FMPZ, 2) );
-                Print("++++++++++++++++++++++++++");
-                Print("Fs = " + Fs);
+                double Fres = Math.Sqrt(Math.Pow(Fvel, 2) + Math.Pow(Fmiddel, 2));
+                double Fx = form.Fx(Fres, aarde.direction);
+                double Fy = form.Fy(Fres, aarde.direction);
+                Print("Fres = " + Fres);
+                Print("Fx = " + Fx);
+                Print("Fy = " + Fy);
 
-                Print("Aarde2.direction = " + aarde2.direction + " |||| " + (aarde2.direction / Math.PI) + " Pi |||| " + ((aarde2.direction / (2 * Math.PI)) * 360) + " graden.");
-                aarde2.direction += (form.NieuweRichting(Fv, FMPZ));
-                Print("Nieuwe aarde2.direction = " + aarde2.direction + " |||| " + (aarde2.direction / Math.PI) + " Pi |||| " + ((aarde2.direction / (2 * Math.PI)) * 360) + " graden.");
-                //aarde2.rotationSpeed = (float)aarde2.direction / 100;
-
-                //aarde2.position.X += (float)(Math.Tan(aarde2.direction) * Fv);
-                //aarde2.position.Y -= (float)(Fv);
-
-                double Fx = form.Fx(Fs, aarde2.direction);
-                double Fy = form.Fy(Fs, aarde2.direction);
-                double massaAarde2 = 10;
-                //Met 10.000.000 Ticks per seconde, duurt één Tick 1 / 10.000.000 seconde.
-                double tijdstap = 1;
-                //double tijdstap = 1 / TimeSpan.TicksPerSecond;
-                Print("Aarde2 positie = " + aarde2.position);
-                aarde2.position.X += (float)form.FmaVerplaatsing(Fx, massaAarde2, tijdstap);
-                aarde2.position.Y += (float)form.FmaVerplaatsing(Fy, massaAarde2, tijdstap);
-                Print("Nieuw aarde2 positie = " + aarde2.position);
+                Print("Oude position = " + aarde.position);
+                aarde.position.X += (float)form.FmaVerplaatsing(Fx, aarde.mass, tijdstap);
+                aarde.position.Y -= (float)form.FmaVerplaatsing(Fy, aarde.mass, tijdstap);
+                Print("Nieuwe position = " + aarde.position);
                 Print();
             }
-
-            //aarde.position.X += (float)mpz;
-            //aarde.position.Y += (float)oudeDir;
         }
     }
 }
