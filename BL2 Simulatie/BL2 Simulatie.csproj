@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Kracht.cs" />
-    <Compile Include="Ster.cs" />
+    <Compile Include="CelestialBody.cs" />
     <Compile Include="Formules.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
